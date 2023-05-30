@@ -1,6 +1,7 @@
 const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
 const express = require("express");
+const taskRoutes = require("./routes/taskRoutes.js");
 
 // initialise express
 const app = express();
@@ -10,6 +11,7 @@ const PORT = process.env.PORT || 5000;
 // mongoose call is asynchronous so no need of an async function
 mongoose
   .connect(process.env.MONGO_URI)
+  // .then is only run after the connection was succesfull. If not the .catch function will be called
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
@@ -19,8 +21,8 @@ mongoose
     console.log(err);
   });
 
-// Routes
-
-app.get("/", (req, res) => {
-  res.send("Home Page");
-});
+// Middleware
+// -----------------------------------
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(taskRoutes);
