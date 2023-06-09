@@ -1,8 +1,11 @@
-import React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Task from "./components/task";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Container from "@mui/material/Container";
+import TaskList from "./components/TaskList";
+
+export const URL = process.env.REACT_APP_SERVER_URL;
 
 const darkTheme = createTheme({
   palette: {
@@ -15,7 +18,8 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline>
         <Container>
-          <Task />
+          <TaskList />
+          <ToastContainer />
         </Container>
       </CssBaseline>
     </ThemeProvider>
