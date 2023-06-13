@@ -1,6 +1,7 @@
 const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
 const express = require("express");
+const cors = require("cors");
 const taskRoutes = require("./routes/taskRoutes.js");
 
 // initialise express
@@ -25,5 +26,6 @@ mongoose
 // -----------------------------------
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 // First argument is the base path of the routes
 app.use("/api/tasks", taskRoutes);
