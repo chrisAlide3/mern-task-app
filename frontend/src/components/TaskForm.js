@@ -4,30 +4,33 @@ import Button from "@mui/material/Button";
 
 const ariaLabel = { "aria-label": "Task Input" };
 
-const TaskForm = ({ createTask, name, handleInputChange }) => {
+const TaskForm = ({
+  createTask,
+  updateTask,
+  isEditing,
+  name,
+  handleInputChange,
+}) => {
   return (
     <Box
       component="form"
-      onSubmit={createTask}
-      sx={{
-        display: "flex",
-      }}
+      onSubmit={isEditing ? updateTask : createTask}
+      display="flex"
+      mt={5}
+      mb={3}
       noValidate
       autoComplete="off"
     >
       <TextField
         name="name"
         value={name}
-        placeholder="Enter new Task"
+        placeholder="Add a task"
         fullWidth
         inputProps={ariaLabel}
         onChange={handleInputChange}
       />
-      <Button color="success" variant="contained" size="large" type="submit">
-        Add
-      </Button>
       <Button color="secondary" variant="contained" size="large" type="submit">
-        Edit
+        {isEditing ? "Edit" : "Add"}
       </Button>
     </Box>
   );
