@@ -25,4 +25,5 @@ mongoose
 // -----------------------------------
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(taskRoutes);
+// First argument is the base path of the routes
+app.use("/api/tasks", taskRoutes);
