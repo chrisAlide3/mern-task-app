@@ -26,6 +26,11 @@ mongoose
 // -----------------------------------
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
+// Allows access from frontend
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://mern-task-app.onrender.com"],
+  })
+);
 // First argument is the base path of the routes
 app.use("/api/tasks", taskRoutes);
